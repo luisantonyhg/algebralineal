@@ -136,7 +136,7 @@
     
         <nav id="navbar" class="navbar">
           <ul>
-            <li><a class="nav-link scrollto active" href="#hero">INICIO</a></li>
+            <li><a class="nav-link scrollto active" href="index.html">INICIO</a></li>
             <li><a class="nav-link scrollto" href="#about">CALCULADOR 2X2</a></li>
             <li><a class="nav-link scrollto" href="determinante3x3.html">DETERMINANTE 3X3</a></li>
             <li><a class="nav-link scrollto" href="#gallery">DETERMINANTE 4X4</a></li>
@@ -149,38 +149,38 @@
     
       </div>
     </header>
-    <section>
+    <section id="hero">
     
       <div class="container" style="z-index:10000;">
         <form class="matriz-container" name="matriz">
-      <div class="celdas-container">
-        <input class="celda" type="number" size="3" />
+            <div class="celdas-container">
+                <input class="celda" type="number" size="3" />
 
-        <input class="celda" type="number" size="3" /><br />
+                <input class="celda" type="number" size="3" /><br />
 
-        <input class="celda" type="number" size="3" />
+                <input class="celda" type="number" size="3" />
 
-        <input class="celda" type="number" size="3" />
+                <input class="celda" type="number" size="3" />
 
-      </div>
+            </div>
 
-      <input
-        class="button btn btn-success"
-        type="button"
-        value="calcular"
-        onClick="det()"
-      />
+            <input
+                 class="button btn btn-success"
+                type="button"
+                value="calcular"
+                onClick="det()"
+            />
 
-      <input
-        disabled
-        style="margin-top: 10px"
-        class="celda-resultado"
-        type="text"
-        name="determinante"
-        size="5"
-      />
-    </form>
-      </div>
+            <input
+                disabled
+                style="margin-top: 10px"
+                class="celda-resultado"
+                type="text"
+                name="determinante"
+                size="5"
+            />
+        </form>
+       </div>
     
       <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
         viewBox="0 24 150 28 " preserveAspectRatio="none">
