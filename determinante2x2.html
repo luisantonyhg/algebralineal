@@ -31,7 +31,6 @@
   <link href="assets/css/style.css" rel="stylesheet">
     <style>
       body {
-        background-color: #17a2b8;
         padding: 0;
         margin: 0;
       }
@@ -42,6 +41,7 @@
         height: 100px;
         border-radius: 10px;
         background-color: #fff;
+        opacity:.5;
         font-size: 38px;
         text-align: center;
         margin: 7px;
@@ -53,6 +53,7 @@
         height: 100px;
         border-radius: 10px;
         background-color: #fff;
+        opacity:.5;
         font-size: 38px;
         text-align: center;
         margin: 7px;
@@ -71,7 +72,7 @@
       }
       .button {
         margin-top: 15px;
-        background-color: #28a745;
+        background-color: #1acc8d;
         border: none;
         color: #fff;
         width: 90%;
@@ -87,10 +88,22 @@
         text-align: center;
         font-weight: bold;
       }
+
+      .titled{
+        margin-top: 15px;
+        background-color: transparent;
+        border: none;
+        color: #fff;
+        width: 100%;
+        font-weight: bold;
+        font-size: 22px;
+        padding: 10px;
+        border-radius: 10px;
+      }
       .celdas-container {
         padding: 0 5px;
-        border-right: 2px solid #000;
-        border-left: 2px solid #000;
+        border-right: 2px solid #fff;
+        border-left: 2px solid #fff;
       }
     </style>
     <link
@@ -104,10 +117,10 @@
     <script>
       function det() {
         var a = new Array(3);
-        for (i = 1; i <= 3; i++) {
-          a[i] = [0, 0, 0, 0];
-          for (j = 1; j <= 3; j++) {
-            a[i][j] = parseFloat(document.matriz[3 * i + j - 4].value);
+        for (i = 1; i <= 2; i++) {
+          a[i] = [0, 0, 0];
+          for (j = 1; j <= 2; j++) {
+            a[i][j] = parseFloat(document.matriz[2 * i + j - 3].value);
           }
         }
 
@@ -124,7 +137,7 @@
     </script>
   </head>
 
-  <body text="white" bgcolor="blue">
+  <body >
     <header id="header" class="fixed-top d-flex align-items-center header-transparent">
       <div class="container d-flex align-items-center justify-content-between">
     
@@ -137,9 +150,9 @@
         <nav id="navbar" class="navbar">
           <ul>
             <li><a class="nav-link scrollto active" href="index.html">INICIO</a></li>
-            <li><a class="nav-link scrollto" href="#about">CALCULADOR 2X2</a></li>
+            <li><a class="nav-link scrollto" href="determinante2x2.html">CALCULADOR 2X2</a></li>
             <li><a class="nav-link scrollto" href="determinante3x3.html">DETERMINANTE 3X3</a></li>
-            <li><a class="nav-link scrollto" href="#gallery">DETERMINANTE 4X4</a></li>
+            <li><a class="nav-link scrollto" href="determinante4x4.html">DETERMINANTE 4X4</a></li>
     
     
             <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
@@ -151,35 +164,39 @@
     </header>
     <section id="hero">
     
-      <div class="container" style="z-index:10000;">
-        <form class="matriz-container" name="matriz">
-            <div class="celdas-container">
-                <input class="celda" type="number" size="3" />
+        <div class="container" >
+            <div class="row justify-content-between">
+                
+                <form class="matriz-container" name="matriz" style="z-index: 100;">
+                    <div class="titled">Determinante de una matriz 2x2</div>
+                    <div class="celdas-container">
+                    <input class="celda" type="number" size="3" />
 
-                <input class="celda" type="number" size="3" /><br />
+                    <input class="celda" type="number" size="3" /><br />
 
-                <input class="celda" type="number" size="3" />
+                    <input class="celda" type="number" size="3" />
 
-                <input class="celda" type="number" size="3" />
+                    <input class="celda" type="number" size="3" />
 
-            </div>
+                </div>
 
-            <input
-                 class="button btn btn-success"
+                <input
+                class="button btn btn-success"
                 type="button"
                 value="calcular"
                 onClick="det()"
-            />
+                />
 
-            <input
+                <input
                 disabled
                 style="margin-top: 10px"
                 class="celda-resultado"
                 type="text"
                 name="determinante"
                 size="5"
-            />
-        </form>
+                />
+                </form>
+            </div>
        </div>
     
       <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -199,7 +216,7 @@
       </svg>
     
     </section>
-    <div class="title">Determinante de una matriz 3x3</div>
+    <!--<div class="title">Determinante de una matriz 3x3</div>-->
     <br /><br />
 
     
