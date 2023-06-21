@@ -136,6 +136,26 @@
         determ = deta - detb + detc - detd;
   
         document.matriz.determinante.value = determ;
+
+        document.getElementById('resolucion').innerHTML=`
+        <div style="margin-bottom:15px;">RESOLUCIÓN: </div>
+        <div style="display:flex;align-items: center;justify-content: center;padding: 0 0 35px 0;flex-direction: column;">
+          <table style="border-right: 1px solid #000;border-left: 1px solid #000;">
+            <tr>
+              <td style="padding:5px;">`+a[1][1]+`<td>
+              <td style="padding:5px;">`+a[1][2]+`<td>
+            </tr>
+            <tr>
+              <td style="padding:5px;">`+a[2][1]+`<td>
+              <td style="padding:5px;">`+a[2][2]+`<td>
+            </tr>
+          </table>
+          <div style="padding:0 10px;">=</div>
+          <div>(-1)<sup>(1+1)</sup>x `+a[2][2]+` + (-1)<sup>(1+2)</sup>x `+a[2][1]+`</div>
+          <div style="padding:0 10px;">=</div>
+          <div>`+determ+`</div>
+        <div>
+        `;
       }
     </script>
   </head>
@@ -245,7 +265,7 @@
     </section>
     <!--<div class="title">Determinante de una matriz 3x3</div>-->
     <br /><br />
-
+    <div id="resolucion" style="z-index:1000;"></div>
     
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
