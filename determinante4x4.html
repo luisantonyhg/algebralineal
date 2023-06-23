@@ -124,38 +124,197 @@
           }
         }
   
-        
-        deta = a[1][1] * (a[2][2] * (a[3][3] * a[4][4] - a[4][3] * a[3][4]) - a[2][3] * (a[3][2] * a[4][4] - a[4][2] * a[3][4]) + a[2][4] * (a[3][2] * a[4][3] - a[4][2] * a[3][3]))
   
-        detb = a[1][2] * (a[2][1] * (a[3][3] * a[4][4] - a[4][3] * a[3][4]) - a[2][3] * (a[3][1] * a[4][4] - a[4][1] * a[3][4]) + a[2][4] * (a[3][1] * a[4][3] - a[4][1] * a[3][3]))
+        deta = (a[2][2] * (a[3][3] * a[4][4] - a[4][3] * a[3][4]) - a[2][3] * (a[3][2] * a[4][4] - a[4][2] * a[3][4]) + a[2][4] * (a[3][2] * a[4][3] - a[4][2] * a[3][3]))
   
-        detc = a[1][3] * (a[2][1] * (a[3][2] * a[4][4] - a[4][2] * a[3][4]) - a[2][2] * (a[3][1] * a[4][4] - a[4][1] * a[3][4]) + a[2][4] * (a[3][1] * a[4][2] - a[4][1] * a[3][2]))
+        detb = (a[2][1] * (a[3][3] * a[4][4] - a[4][3] * a[3][4]) - a[2][3] * (a[3][1] * a[4][4] - a[4][1] * a[3][4]) + a[2][4] * (a[3][1] * a[4][3] - a[4][1] * a[3][3]))
   
-        detd = a[1][4] * (a[2][1] * (a[3][2] * a[4][3] - a[4][2] * a[3][3]) - a[2][2] * (a[3][1] * a[4][3] - a[4][1] * a[3][3]) + a[2][3] * (a[3][1] * a[4][2] - a[4][1] * a[3][2]))
-        
-        determ = deta - detb + detc - detd;
+        detc = (a[2][1] * (a[3][2] * a[4][4] - a[4][2] * a[3][4]) - a[2][2] * (a[3][1] * a[4][4] - a[4][1] * a[3][4]) + a[2][4] * (a[3][1] * a[4][2] - a[4][1] * a[3][2]))
+  
+        detd = (a[2][1] * (a[3][2] * a[4][3] - a[4][2] * a[3][3]) - a[2][2] * (a[3][1] * a[4][3] - a[4][1] * a[3][3]) + a[2][3] * (a[3][1] * a[4][2] - a[4][1] * a[3][2]))
+  
+        determ = a[1][1] * deta - a[1][2] * detb + a[1][3] * detc - a[1][4] * detd;
   
         document.matriz.determinante.value = determ;
-
-        document.getElementById('resolucion').innerHTML=`
-        <div style="margin-bottom:15px;">RESOLUCIÓN: </div>
-        <div style="display:flex;align-items: center;justify-content: center;padding: 0 0 35px 0;flex-direction: column;">
-          <table style="border-right: 1px solid #000;border-left: 1px solid #000;">
-            <tr>
-              <td style="padding:5px;">`+a[1][1]+`<td>
-              <td style="padding:5px;">`+a[1][2]+`<td>
-            </tr>
-            <tr>
-              <td style="padding:5px;">`+a[2][1]+`<td>
-              <td style="padding:5px;">`+a[2][2]+`<td>
-            </tr>
-          </table>
-          <div style="padding:0 10px;">=</div>
-          <div>(-1)<sup>(1+1)</sup>x `+a[2][2]+` + (-1)<sup>(1+2)</sup>x `+a[2][1]+`</div>
-          <div style="padding:0 10px;">=</div>
-          <div>`+determ+`</div>
-        <div>
-        `;
+  
+        document.getElementById('resolucion').innerHTML = `
+          <div style="margin-bottom:15px; text-align: center"><b>RESOLUCIÓN: MÉTODO DE MENORES COMPLEMENTARIOS</b></div>
+          
+          <div style="margin-bottom:15px; text-align: center"><b>Paso 1:</b> Multiplicamos cada elemento de la primera fila por su submatriz correspondiente.</div>
+        
+          <div style="display:flex;align-items: center;justify-content: center; padding: 0 0 35px 0;">
+            <table style="border-right: 1px solid #000;border-left: 1px solid #000;">
+              <span>`+ a[1][1] + `&nbsp</span>
+              <tr>
+                <td style="padding:5px;">`+ a[2][2] + `<td>
+                <td style="padding:5px;">`+ a[2][3] + `<td>
+                <td style="padding:5px;">`+ a[2][4] + `<td>
+              </tr>
+              <tr>
+                <td style="padding:5px;">`+ a[3][2] + `<td>
+                <td style="padding:5px;">`+ a[3][3] + `<td>
+                <td style="padding:5px;">`+ a[3][4] + `<td>
+              </tr>
+              <tr>
+                <td style="padding:5px;">`+ a[4][2] + `<td>
+                <td style="padding:5px;">`+ a[4][3] + `<td>
+                <td style="padding:5px;">`+ a[4][4] + `<td>
+              </tr>
+            </table>
+            <span>&nbsp+&nbsp`+ a[1][2] + `&nbsp</span>
+            <table style="border-right: 1px solid #000;border-left: 1px solid #000;">
+              <tr>
+                <td style="padding:5px;">`+ a[2][1] + `<td>
+                <td style="padding:5px;">`+ a[2][3] + `<td>
+                <td style="padding:5px;">`+ a[2][4] + `<td>
+              </tr>
+              <tr>
+                <td style="padding:5px;">`+ a[3][1] + `<td>
+                <td style="padding:5px;">`+ a[3][3] + `<td>
+                <td style="padding:5px;">`+ a[3][4] + `<td>
+              </tr>
+              <tr>
+                <td style="padding:5px;">`+ a[4][1] + `<td>
+                <td style="padding:5px;">`+ a[4][3] + `<td>
+                <td style="padding:5px;">`+ a[4][4] + `<td>
+              </tr>
+            </table>
+            <span>&nbsp+&nbsp`+ a[1][3] + `&nbsp</span>
+            <table style="border-right: 1px solid #000;border-left: 1px solid #000;">
+              <tr>
+                <td style="padding:5px;">`+ a[2][1] + `<td>
+                <td style="padding:5px;">`+ a[2][2] + `<td>
+                <td style="padding:5px;">`+ a[2][4] + `<td>
+              </tr>
+              <tr>
+                <td style="padding:5px;">`+ a[3][1] + `<td>
+                <td style="padding:5px;">`+ a[3][2] + `<td>
+                <td style="padding:5px;">`+ a[3][4] + `<td>
+              </tr>
+              <tr>
+                <td style="padding:5px;">`+ a[4][1] + `<td>
+                <td style="padding:5px;">`+ a[4][2] + `<td>
+                <td style="padding:5px;">`+ a[4][4] + `<td>
+              </tr>
+            </table>
+            <span>&nbsp+&nbsp`+ a[1][4] + `&nbsp</span>
+            <table style="border-right: 1px solid #000;border-left: 1px solid #000;">
+              <tr>
+                <td style="padding:5px;">`+ a[2][1] + `<td>
+                <td style="padding:5px;">`+ a[2][2] + `<td>
+                <td style="padding:5px;">`+ a[2][3] + `<td>
+              </tr>
+              <tr>
+                <td style="padding:5px;">`+ a[3][1] + `<td>
+                <td style="padding:5px;">`+ a[3][2] + `<td>
+                <td style="padding:5px;">`+ a[3][3] + `<td>
+              </tr>
+              <tr>
+                <td style="padding:5px;">`+ a[4][1] + `<td>
+                <td style="padding:5px;">`+ a[4][2] + `<td>
+                <td style="padding:5px;">`+ a[4][3] + `<td>
+              </tr>
+            </table>
+          </div>
+          
+          <br>
+          
+          <div style="margin-bottom:15px; text-align: center"><b>Paso 2:</b>Hallamos las determinantes de cada submatriz</div>
+          
+          <div style="display:flex;align-items: center;justify-content: center; padding: 0 0 35px 0;">
+            <table style="border-right: 1px solid #000;border-left: 1px solid #000;">
+              <tr>
+                <td style="padding:5px;">`+ a[2][2] + `<td>
+                <td style="padding:5px;">`+ a[2][3] + `<td>
+                <td style="padding:5px;">`+ a[2][4] + `<td>
+              </tr>
+              <tr>
+                <td style="padding:5px;">`+ a[3][2] + `<td>
+                <td style="padding:5px;">`+ a[3][3] + `<td>
+                <td style="padding:5px;">`+ a[3][4] + `<td>
+              </tr>
+              <tr>
+                <td style="padding:5px;">`+ a[4][2] + `<td>
+                <td style="padding:5px;">`+ a[4][3] + `<td>
+                <td style="padding:5px;">`+ a[4][4] + `<td>
+              </tr>
+            </table>
+            <div style="padding:0 10px;"> = `+ a[2][2] + ` (` + a[3][3] + ` * ` + a[4][4] + ` - ` + a[4][3] + ` * ` + a[3][4] + `) - ` + a[2][3] + ` (` + a[3][2] + ` * ` + a[4][4] + ` - ` + a[4][2] + ` * ` + a[3][4] + `) + ` + a[2][4] + ` (` + a[3][2] + ` * ` + a[4][3] + ` - ` + a[4][2] + ` * ` + a[3][3] + `) = ` + deta + `</div>
+          </div>
+  
+          <div style="display:flex;align-items: center;justify-content: center; padding: 0 0 35px 0;">
+            <table style="border-right: 1px solid #000;border-left: 1px solid #000;">
+              <tr>
+                <td style="padding:5px;">`+ a[2][1] + `<td>
+                <td style="padding:5px;">`+ a[2][3] + `<td>
+                <td style="padding:5px;">`+ a[2][4] + `<td>
+              </tr>
+              <tr>
+                <td style="padding:5px;">`+ a[3][1] + `<td>
+                <td style="padding:5px;">`+ a[3][3] + `<td>
+                <td style="padding:5px;">`+ a[3][4] + `<td>
+              </tr>
+              <tr>
+                <td style="padding:5px;">`+ a[4][1] + `<td>
+                <td style="padding:5px;">`+ a[4][3] + `<td>
+                <td style="padding:5px;">`+ a[4][4] + `<td>
+              </tr>
+            </table>
+            <div style="padding:0 10px;"> = `+ a[2][1] + ` (` + a[3][3] + ` * ` + a[4][4] + ` - ` + a[4][3] + ` * ` + a[3][4] + `) - ` + a[2][3] + ` (` + a[3][1] + ` * ` + a[4][4] + ` - ` + a[4][1] + ` * ` + a[3][4] + `) + ` + a[2][4] + ` (` + a[3][1] + ` * ` + a[4][3] + ` - ` + a[4][1] + ` * ` + a[3][3] + `) = ` + detb + `</div>
+          </div>
+  
+          <div style="display:flex;align-items: center;justify-content: center; padding: 0 0 35px 0;">
+            <table style="border-right: 1px solid #000;border-left: 1px solid #000;">
+              <tr>
+                <td style="padding:5px;">`+ a[2][1] + `<td>
+                <td style="padding:5px;">`+ a[2][2] + `<td>
+                <td style="padding:5px;">`+ a[2][4] + `<td>
+              </tr>
+              <tr>
+                <td style="padding:5px;">`+ a[3][1] + `<td>
+                <td style="padding:5px;">`+ a[3][2] + `<td>
+                <td style="padding:5px;">`+ a[3][4] + `<td>
+              </tr>
+              <tr>
+                <td style="padding:5px;">`+ a[4][1] + `<td>
+                <td style="padding:5px;">`+ a[4][2] + `<td>
+                <td style="padding:5px;">`+ a[4][4] + `<td>
+              </tr>
+            </table>
+            <div style="padding:0 10px;"> = `+ a[2][1] + ` (` + a[3][2] + ` * ` + a[4][4] + ` - ` + a[4][2] + ` * ` + a[3][4] + `) - ` + a[2][2] + ` (` + a[3][1] + ` * ` + a[4][4] + ` - ` + a[4][1] + ` * ` + a[3][4] + `) + ` + a[2][4] + ` (` + a[3][1] + ` * ` + a[4][2] + ` - ` + a[4][1] + ` * ` + a[3][2] + `) = ` + detc + `</div>
+          </div>
+  
+          <div style="display:flex;align-items: center;justify-content: center; padding: 0 0 35px 0;">
+            <table style="border-right: 1px solid #000;border-left: 1px solid #000;">
+              <tr>
+                <td style="padding:5px;">`+ a[2][1] + `<td>
+                <td style="padding:5px;">`+ a[2][2] + `<td>
+                <td style="padding:5px;">`+ a[2][3] + `<td>
+              </tr>
+              <tr>
+                <td style="padding:5px;">`+ a[3][1] + `<td>
+                <td style="padding:5px;">`+ a[3][2] + `<td>
+                <td style="padding:5px;">`+ a[3][3] + `<td>
+              </tr>
+              <tr>
+                <td style="padding:5px;">`+ a[4][1] + `<td>
+                <td style="padding:5px;">`+ a[4][2] + `<td>
+                <td style="padding:5px;">`+ a[4][3] + `<td>
+              </tr>
+            </table>
+            <div style="padding:0 10px;"> = `+ a[2][1] + ` (` + a[3][2] + ` * ` + a[4][3] + ` - ` + a[4][2] + ` * ` + a[3][3] + `) - ` + a[2][2] + ` (` + a[3][1] + ` * ` + a[4][3] + ` - ` + a[4][1] + ` * ` + a[3][3] + `) + ` + a[2][3] + ` (` + a[3][1] + ` * ` + a[4][2] + ` - ` + a[4][1] + ` * ` + a[3][2] + `) = ` + detd + `</div>
+          </div>
+  
+          <div style="margin-bottom:15px; text-align: center"><b>Paso 3:</b>Reemplazamos, analizando el signo y operamos</div>
+  
+          
+          <div style="margin-bottom:15px; text-align: center">(`+ a[1][1] + ` )(-1)<sup>(1+1)</sup>(` + deta + `) + (` + a[1][2] + ` )(-1)<sup>(1+2)</sup>(` + detb + `) + (` + a[1][3] + ` )(-1)<sup>(1+3)</sup>(` + detc + `) + (` + a[1][4] + ` )(-1)<sup>(1+4)</sup>(` + detd + `)</div>
+          
+          <br>        
+  
+          <div style="margin-bottom:15px; text-align: center"> `+ a[1][1] + `(` + deta + `) - ` + a[1][2] + `(` + detb + `) + ` + a[1][3] + `(` + detc + `) - ` + a[1][4] + `(` + detd + `) = ` + determ + `</div>        
+          `;
+  
       }
     </script>
   </head>
