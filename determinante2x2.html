@@ -29,222 +29,228 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-    <style>
-      body {
-        padding: 0;
-        margin: 0;
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+
+    .celda {
+      min-width: 100px;
+      width: 100px;
+      min-height: 100px;
+      height: 100px;
+      border-radius: 10px;
+      background-color: #fff;
+      opacity: .5;
+      font-size: 38px;
+      text-align: center;
+      margin: 7px;
+      border: none;
+    }
+
+    .celda-resultado {
+      width: 90%;
+      min-height: 100px;
+      height: 100px;
+      border-radius: 10px;
+      background-color: #fff;
+      opacity: .5;
+      font-size: 38px;
+      text-align: center;
+      margin: 7px;
+      border: none;
+    }
+
+    .matriz-container {
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      align-items: center;
+    }
+
+    .button {
+      margin-top: 15px;
+      background-color: #1acc8d;
+      border: none;
+      color: #fff;
+      width: 90%;
+      font-size: 18px;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    .title {
+      background-color: #17a2d8;
+      padding: 30px 0;
+      font-size: 24px;
+      width: 100%;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .titled {
+      margin-top: 15px;
+      background-color: transparent;
+      border: none;
+      color: #fff;
+      width: 100%;
+      font-weight: bold;
+      font-size: 22px;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    .celdas-container {
+      padding: 0 5px;
+      border-right: 2px solid #fff;
+      border-left: 2px solid #fff;
+    }
+  </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <script>
+    function det() {
+
+      if (document.getElementById("number1").value == "") {
+        document.getElementById("number1").value = 0;
       }
-      .celda {
-        min-width: 100px;
-        width: 100px;
-        min-height: 100px;
-        height: 100px;
-        border-radius: 10px;
-        background-color: #fff;
-        opacity:.5;
-        font-size: 38px;
-        text-align: center;
-        margin: 7px;
-        border: none;
+      if (document.getElementById("number2").value == "") {
+        document.getElementById("number2").value = 0;
       }
-      .celda-resultado {
-        width: 90%;
-        min-height: 100px;
-        height: 100px;
-        border-radius: 10px;
-        background-color: #fff;
-        opacity:.5;
-        font-size: 38px;
-        text-align: center;
-        margin: 7px;
-        border: none;
+      if (document.getElementById("number3").value == "") {
+        document.getElementById("number3").value = 0;
       }
-      .matriz-container {
-        padding: 0;
-        margin: 0;
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
-        align-items: center;
-      }
-      .button {
-        margin-top: 15px;
-        background-color: #1acc8d;
-        border: none;
-        color: #fff;
-        width: 90%;
-        font-size: 18px;
-        padding: 10px;
-        border-radius: 10px;
-      }
-      .title {
-        background-color: #17a2d8;
-        padding: 30px 0;
-        font-size: 24px;
-        width: 100%;
-        text-align: center;
-        font-weight: bold;
+      if (document.getElementById("number4").value == "") {
+        document.getElementById("number4").value = 0;
       }
 
-      .titled{
-        margin-top: 15px;
-        background-color: transparent;
-        border: none;
-        color: #fff;
-        width: 100%;
-        font-weight: bold;
-        font-size: 22px;
-        padding: 10px;
-        border-radius: 10px;
-      }
-      .celdas-container {
-        padding: 0 5px;
-        border-right: 2px solid #fff;
-        border-left: 2px solid #fff;
-      }
-    </style>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-      crossorigin="anonymous"
-    ></script>
-    <script>
-      function det() {
-        var a = new Array(3);
-        for (i = 1; i <= 2; i++) {
-          a[i] = [0, 0, 0];
-          for (j = 1; j <= 2; j++) {
-            a[i][j] = parseFloat(document.matriz[2 * i + j - 3].value);
-          }
+      var a = new Array(3);
+      for (i = 1; i <= 2; i++) {
+        a[i] = [0, 0, 0];
+        for (j = 1; j <= 2; j++) {
+          a[i][j] = parseFloat(document.matriz[2 * i + j - 3].value);
         }
+      }
 
-        deta =
-          a[1][1] * a[2][2];
+      deta =
+        a[1][1] * a[2][2];
 
-        detb =
-          a[1][2] * a[2][1];
+      detb =
+        a[1][2] * a[2][1];
 
-        determ = deta - detb;
+      determ = deta - detb;
 
-        document.matriz.determinante.value = determ;
+      document.matriz.determinante.value = determ;
 
-        document.getElementById('resolucion').innerHTML=`
+      document.getElementById('resolucion').innerHTML = `
         <div style="margin-bottom:15px;">RESOLUCIÓN: </div>
         <div style="display:flex;align-items: center;justify-content: center;padding: 0 0 35px 0;flex-direction: column;">
           <table style="border-right: 1px solid #000;border-left: 1px solid #000;">
             <tr>
-              <td style="padding:5px;">`+a[1][1]+`<td>
-              <td style="padding:5px;">`+a[1][2]+`<td>
+              <td style="padding:5px;">`+ a[1][1] + `<td>
+              <td style="padding:5px;">`+ a[1][2] + `<td>
             </tr>
             <tr>
-              <td style="padding:5px;">`+a[2][1]+`<td>
-              <td style="padding:5px;">`+a[2][2]+`<td>
+              <td style="padding:5px;">`+ a[2][1] + `<td>
+              <td style="padding:5px;">`+ a[2][2] + `<td>
             </tr>
           </table>
           <div style="padding:0 10px;">=</div>
-          <div>(-1)<sup>(1+1)</sup>x `+a[2][2]+` + (-1)<sup>(1+2)</sup>x `+a[2][1]+`</div>
+          <div>(-1)<sup>(1+1)</sup>x `+ a[2][2] + ` + (-1)<sup>(1+2)</sup>x ` + a[2][1] + `</div>
           <div style="padding:0 10px;">=</div>
-          <div>`+determ+`</div>
+          <div>`+ determ + `</div>
         <div>
         `;
-      }
-    </script>
-  </head>
 
-  <body >
-    <header id="header" class="fixed-top d-flex align-items-center header-transparent">
-      <div class="container d-flex align-items-center justify-content-between">
-    
-        <div class="logo">
-          <h1><a href="index.html"><span>MATRIX CALCULATOR</span></a></h1>
-          <!-- Uncomment below if you prefer to use an image logo -->
-          <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-        </div>
-    
-        <nav id="navbar" class="navbar">
-          <ul>
-            <li><a class="nav-link scrollto active" href="index.html">INICIO</a></li>
-            <li><a class="nav-link scrollto" href="determinante2x2.html">CALCULADOR 2X2</a></li>
-            <li><a class="nav-link scrollto" href="determinante3x3.html">DETERMINANTE 3X3</a></li>
-            <li><a class="nav-link scrollto" href="determinante4x4.html">DETERMINANTE 4X4</a></li>
-    
-    
-  
-          </ul>
-          <i class="bi bi-list mobile-nav-toggle"></i>
-        </nav><!-- .navbar -->
-    
+
+    }
+
+  </script>
+</head>
+
+<body>
+  <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <div class="logo">
+        <h1><a href="index.html"><span>MATRIX CALCULATOR</span></a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
-    </header>
-    <section id="hero">
-    
-        <div class="container" >
-            <div class="row justify-content-between">
-                
-                <form class="matriz-container" name="matriz" style="z-index: 100;">
-                    <div class="titled">Determinante de una matriz 2x2</div>
-                    <div class="celdas-container">
-                    <input class="celda" type="number" size="3" />
 
-                    <input class="celda" type="number" size="3" /><br />
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="index.html">INICIO</a></li>
+          <li><a class="nav-link scrollto" href="determinante2x2.html">CALCULADOR 2X2</a></li>
+          <li><a class="nav-link scrollto" href="determinante3x3.html">DETERMINANTE 3X3</a></li>
+          <li><a class="nav-link scrollto" href="determinante4x4.html">DETERMINANTE 4X4</a></li>
 
-                    <input class="celda" type="number" size="3" />
 
-                    <input class="celda" type="number" size="3" />
+         
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
 
-                </div>
+    </div>
+  </header>
+  <section id="hero">
 
-                <input
-                class="button btn btn-success"
-                type="button"
-                value="calcular"
-                onClick="det()"
-                />
+    <div class="container">
+      <div class="row justify-content-between">
 
-                <input
-                disabled
-                style="margin-top: 10px"
-                class="celda-resultado"
-                type="text"
-                name="determinante"
-                size="5"
-                />
-                </form>
-            </div>
-            
-       </div>
-    
-      <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-        viewBox="0 24 150 28 " preserveAspectRatio="none">
-        <defs>
-          <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z">
-        </defs>
-        <g class="wave1">
-          <use xlink:href="#wave-path" x="50" y="3" fill="rgba(255,255,255, .1)">
-        </g>
-        <g class="wave2">
-          <use xlink:href="#wave-path" x="50" y="0" fill="rgba(255,255,255, .2)">
-        </g>
-        <g class="wave3">
-          <use xlink:href="#wave-path" x="50" y="9" fill="#fff">
-        </g>
-      </svg>
-    
-    </section>
-    <!--<div class="title">Determinante de una matriz 3x3</div>-->
-    <br /><br />
-    <div id="resolucion" style="z-index:1000;"></div>
-    
+        <form class="matriz-container" name="matriz" style="z-index: 100;">
+          <div class="titled">Determinante de una matriz 2x2</div>
+          <div class="celdas-container">
+            <input id="number1" class="celda" type="number" size="3" value="0" />
+
+            <input id="number2" class="celda" type="number" size="3" value="0" /><br />
+
+            <input id="number3" class="celda" type="number" size="3" value="0" />
+
+            <input id="number4" class="celda" type="number" size="3" value="0" />
+
+          </div>
+
+          <input class="button btn btn-success" type="button" value="calcular" onClick="det()" />
+
+          <input disabled style="margin-top: 10px" class="celda-resultado" type="text" name="determinante" size="5" />
+        </form>
+      </div>
+    </div>
+
+    <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+      viewBox="0 24 150 28 " preserveAspectRatio="none">
+      <defs>
+        <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z">
+      </defs>
+      <g class="wave1">
+        <use xlink:href="#wave-path" x="50" y="3" fill="rgba(255,255,255, .1)">
+      </g>
+      <g class="wave2">
+        <use xlink:href="#wave-path" x="50" y="0" fill="rgba(255,255,255, .2)">
+      </g>
+      <g class="wave3">
+        <use xlink:href="#wave-path" x="50" y="9" fill="#fff">
+      </g>
+    </svg>
+
+  </section>
+  <!--<div class="title">Determinante de una matriz 3x3</div>-->
+  <br /><br />
+  <div id="resolucion" style="z-index:1000;"></div>
+
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
   <div id="preloader"></div>
-  
+
   <!-- Vendor JS Files -->
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
@@ -252,10 +258,10 @@
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
-  
+
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-  
-  </body>
-  
-  </html>
+
+</body>
+
+</html>
