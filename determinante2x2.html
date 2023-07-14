@@ -116,64 +116,69 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
-  <script>
-    function det() {
-
-      if (document.getElementById("number1").value == "") {
-        document.getElementById("number1").value = 0;
-      }
-      if (document.getElementById("number2").value == "") {
-        document.getElementById("number2").value = 0;
-      }
-      if (document.getElementById("number3").value == "") {
-        document.getElementById("number3").value = 0;
-      }
-      if (document.getElementById("number4").value == "") {
-        document.getElementById("number4").value = 0;
-      }
-
-      var a = new Array(3);
-      for (i = 1; i <= 2; i++) {
-        a[i] = [0, 0, 0];
-        for (j = 1; j <= 2; j++) {
-          a[i][j] = parseFloat(document.matriz[2 * i + j - 3].value);
+    <script>
+      function det() {
+        //Validación de datos ingresados
+        if (document.getElementById("number1").value == "") {
+          document.getElementById("number1").value = 0;
         }
+        if (document.getElementById("number2").value == "") {
+          document.getElementById("number2").value = 0;
+        }
+        if (document.getElementById("number3").value == "") {
+          document.getElementById("number3").value = 0;
+        }
+        if (document.getElementById("number4").value == "") {
+          document.getElementById("number4").value = 0;
+        }
+  
+        //creación del array
+        var a = new Array();
+        for (i = 1; i <= 2; i++) {  //Definimos el array a e inicializamos la posición i (para las filas) en 1 hasta 2
+          a[i] = [];
+          for (j = 1; j <= 2; j++) {  //Inicializamos la posición de j (para las columnas) en 1 hasta 2
+            a[i][j] = parseFloat(document.matriz[2 * i + j - 3].value); //          
+          }
+        }
+  
+        //hallamos el producto de las diagonales
+        let deta = a[1][1] * a[2][2];
+  
+        let detb = a[1][2] * a[2][1];
+  
+        //hallamos la determinante
+        let determ = deta - detb;
+  
+        //En el documento seleccionamos la etiqueta form que tiene como name='matriz'
+        //Dentro de este seleccionamos el input de name="determinante"
+        //Añadimos el valor calculado de la determinante
+        document.matriz.determinante.value = determ;
+  
+        // visualización de la resolución
+        document.getElementById('resolucion').innerHTML = `
+          <div style="margin-bottom:15px;">RESOLUCIÓN: </div>
+          <div style="display:flex;align-items: center;justify-content: center;padding: 0 0 35px 0;flex-direction: column;">
+            <table style="border-right: 1px solid #000;border-left: 1px solid #000;">
+              <tr>
+                <td style="padding:5px;">`+ a[1][1] + `<td>
+                <td style="padding:5px;">`+ a[1][2] + `<td>
+              </tr>
+              <tr>
+                <td style="padding:5px;">`+ a[2][1] + `<td>
+                <td style="padding:5px;">`+ a[2][2] + `<td>
+              </tr>
+            </table>
+            <div style="padding:0 10px;">=</div>
+            <div>(-1)<sup>(1+1)</sup>x `+ a[2][2] + ` + (-1)<sup>(1+2)</sup>x ` + a[2][1] + `</div>
+            <div style="padding:0 10px;">=</div>
+            <div>`+ determ + `</div>
+          <div>
+          `;
+  
+  
       }
-
-      deta =
-        a[1][1] * a[2][2];
-
-      detb =
-        a[1][2] * a[2][1];
-
-      determ = deta - detb;
-
-      document.matriz.determinante.value = determ;
-
-      document.getElementById('resolucion').innerHTML = `
-        <div style="margin-bottom:15px;">RESOLUCIÓN: </div>
-        <div style="display:flex;align-items: center;justify-content: center;padding: 0 0 35px 0;flex-direction: column;">
-          <table style="border-right: 1px solid #000;border-left: 1px solid #000;">
-            <tr>
-              <td style="padding:5px;">`+ a[1][1] + `<td>
-              <td style="padding:5px;">`+ a[1][2] + `<td>
-            </tr>
-            <tr>
-              <td style="padding:5px;">`+ a[2][1] + `<td>
-              <td style="padding:5px;">`+ a[2][2] + `<td>
-            </tr>
-          </table>
-          <div style="padding:0 10px;">=</div>
-          <div>(-1)<sup>(1+1)</sup>x `+ a[2][2] + ` + (-1)<sup>(1+2)</sup>x ` + a[2][1] + `</div>
-          <div style="padding:0 10px;">=</div>
-          <div>`+ determ + `</div>
-        <div>
-        `;
-
-
-    }
-
-  </script>
+  
+    </script>
 </head>
 
 <body>

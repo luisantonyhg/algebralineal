@@ -106,110 +106,117 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
-  <script>
-    function det() {
-
-      if (document.getElementById("number1").value == "") {
-        document.getElementById("number1").value = 0;
-      }
-      if (document.getElementById("number2").value == "") {
-        document.getElementById("number2").value = 0;
-      }
-      if (document.getElementById("number3").value == "") {
-        document.getElementById("number3").value = 0;
-      }
-      if (document.getElementById("number4").value == "") {
-        document.getElementById("number4").value = 0;
-      }
-      if (document.getElementById("number5").value == "") {
-        document.getElementById("number5").value = 0;
-      }
-      if (document.getElementById("number6").value == "") {
-        document.getElementById("number6").value = 0;
-      }
-      if (document.getElementById("number7").value == "") {
-        document.getElementById("number7").value = 0;
-      }
-      if (document.getElementById("number8").value == "") {
-        document.getElementById("number8").value = 0;
-      }
-      if (document.getElementById("number9").value == "") {
-        document.getElementById("number9").value = 0;
-      }
-
-
-      var a = new Array(3);
-      for (i = 1; i <= 3; i++) {
-        a[i] = [0, 0, 0, 0];
-        for (j = 1; j <= 3; j++) {
-          a[i][j] = parseFloat(document.matriz[3 * i + j - 4].value);
+    <script>
+      function det() {
+        //Validación
+        if (document.getElementById("number1").value == "") {
+          document.getElementById("number1").value = 0;
         }
+        if (document.getElementById("number2").value == "") {
+          document.getElementById("number2").value = 0;
+        }
+        if (document.getElementById("number3").value == "") {
+          document.getElementById("number3").value = 0;
+        }
+        if (document.getElementById("number4").value == "") {
+          document.getElementById("number4").value = 0;
+        }
+        if (document.getElementById("number5").value == "") {
+          document.getElementById("number5").value = 0;
+        }
+        if (document.getElementById("number6").value == "") {
+          document.getElementById("number6").value = 0;
+        }
+        if (document.getElementById("number7").value == "") {
+          document.getElementById("number7").value = 0;
+        }
+        if (document.getElementById("number8").value == "") {
+          document.getElementById("number8").value = 0;
+        }
+        if (document.getElementById("number9").value == "") {
+          document.getElementById("number9").value = 0;
+        }
+  
+        //creación del array
+        var a = new Array();
+        for (i = 1; i <= 3; i++) {  //Definimos el array a e inicializamos la posición i (para las filas) en 1 hasta 3
+          a[i] = [];
+          for (j = 1; j <= 3; j++) {  //Inicializamos la posición de j (para las columnas) en 1 hasta 3
+            a[i][j] = parseFloat(document.matriz[3 * i + j - 4].value);
+          }
+        }
+        //Resolución por método de menores complementarios
+  
+        //hallamos las determinantes de las submatrices
+        deta = a[1][1] * (a[2][2] * a[3][3] - a[3][2] * a[2][3]);
+  
+        detb = a[1][2] * (a[2][1] * a[3][3] - a[3][1] * a[2][3]);
+  
+        detc = a[1][3] * (a[2][1] * a[3][2] - a[3][1] * a[2][2]);
+  
+        //calculamos la determinante
+        determ = deta - detb + detc;
+  
+        //En el documento seleccionamos la etiqueta form que tiene como name='matriz'
+        //Dentro de este seleccionamos el input de name="determinante"
+        //Añadimos el valor calculado de la determinante
+        document.matriz.determinante.value = determ;
+  
+        //Visualización de la resolución
+        document.getElementById('resolucion').innerHTML = `
+          <div style="margin-bottom:15px; text-align: center"><b>RESOLUCIÓN: MÉTODO DE MENORES COMPLEMENTARIOS</b></div>
+          
+          <div style="margin-bottom:15px; text-align: center"><b>Paso 1:</b> Multiplicamos cada elemento de la primera fila por su submatriz correspondiente.</div>
+  
+          <div style="display:flex;align-items: center;justify-content: center; padding: 0 0 35px 0;">
+            <table style="border-right: 1px solid #000;border-left: 1px solid #000;">
+              <span>`+ a[1][1] + `&nbsp</span>
+              <tr>
+                <td style="padding:5px;">`+ a[2][2] + `<td>
+                <td style="padding:5px;">`+ a[2][3] + `<td>
+              </tr>
+              <tr>
+                <td style="padding:5px;">`+ a[3][2] + `<td>
+                <td style="padding:5px;">`+ a[3][3] + `<td>
+              </tr>
+            </table>
+            <span>&nbsp+&nbsp`+ a[1][2] + `&nbsp</span>
+            <table style="border-right: 1px solid #000;border-left: 1px solid #000;">
+              <tr>
+                <td style="padding:5px;">`+ a[2][1] + `<td>
+                <td style="padding:5px;">`+ a[2][3] + `<td>
+              </tr>
+              <tr>
+                <td style="padding:5px;">`+ a[3][1] + `<td>
+                <td style="padding:5px;">`+ a[3][3] + `<td>
+              </tr>
+            </table>
+            <span>&nbsp+&nbsp`+ a[1][3] + `&nbsp</span>
+            <table style="border-right: 1px solid #000;border-left: 1px solid #000;">
+              <tr>
+                <td style="padding:5px;">`+ a[2][1] + `<td>
+                <td style="padding:5px;">`+ a[2][2] + `<td>
+              </tr>
+              <tr>
+                <td style="padding:5px;">`+ a[3][1] + `<td>
+                <td style="padding:5px;">`+ a[3][2] + `<td>
+              </tr>
+            </table>
+          </div>
+  
+          <br>
+          
+          <div style="margin-bottom:15px; text-align: center"><b>Paso 2:</b> Para determinar el signo multiplicamos cada elemento por (-1)<sup>(i+j)</sup> y calculamos las determinantes de las matrices de 2x2</div>
+          <div style="margin-bottom:15px; text-align: center">(`+ a[1][1] + ` )(-1)<sup>(1+1)</sup>x (` + a[2][2] + `*` + a[3][3] + `-` + a[2][3] + `*` + a[3][2] + `) + (` + a[1][2] + ` )(-1)<sup>(1+2)</sup>x (` + a[2][1] + `*` + a[3][3] + `-` + a[2][3] + `*` + a[3][1] + `) + (` + a[1][3] + ` )(-1)<sup>(1+1)</sup>x (` + a[2][1] + `*` + a[3][2] + `-` + a[2][2] + `*` + a[3][1] + `)</div>
+          
+          <br>
+  
+          <div style="margin-bottom:15px; text-align: center"><b>Paso 3:</b>Realizamos los cálculos respectivos para hallar la solución</div>
+  
+          <div style="margin-bottom:15px; text-align: center"> (`+ deta + `) - (` + detb + `) + (` + detc + `) = ` + determ + `</div>        
+          `;
       }
-
-      deta = a[1][1] * (a[2][2] * a[3][3] - a[3][2] * a[2][3]);
-
-      detb = a[1][2] * (a[2][1] * a[3][3] - a[3][1] * a[2][3]);
-
-      detc = a[1][3] * (a[2][1] * a[3][2] - a[3][1] * a[2][2]);
-
-      determ = deta - detb + detc;
-
-      document.matriz.determinante.value = determ;
-
-      document.getElementById('resolucion').innerHTML = `
-        <div style="margin-bottom:15px; text-align: center"><b>RESOLUCIÓN: MÉTODO DE MENORES COMPLEMENTARIOS</b></div>
-        
-        <div style="margin-bottom:15px; text-align: center"><b>Paso 1:</b> Multiplicamos cada elemento de la primera fila por su submatriz correspondiente.</div>
-
-        <div style="display:flex;align-items: center;justify-content: center; padding: 0 0 35px 0;">
-          <table style="border-right: 1px solid #000;border-left: 1px solid #000;">
-            <span>`+ a[1][1] + `&nbsp</span>
-            <tr>
-              <td style="padding:5px;">`+ a[2][2] + `<td>
-              <td style="padding:5px;">`+ a[2][3] + `<td>
-            </tr>
-            <tr>
-              <td style="padding:5px;">`+ a[3][2] + `<td>
-              <td style="padding:5px;">`+ a[3][3] + `<td>
-            </tr>
-          </table>
-          <span>&nbsp+&nbsp`+ a[1][2] + `&nbsp</span>
-          <table style="border-right: 1px solid #000;border-left: 1px solid #000;">
-            <tr>
-              <td style="padding:5px;">`+ a[2][1] + `<td>
-              <td style="padding:5px;">`+ a[2][3] + `<td>
-            </tr>
-            <tr>
-              <td style="padding:5px;">`+ a[3][1] + `<td>
-              <td style="padding:5px;">`+ a[3][3] + `<td>
-            </tr>
-          </table>
-          <span>&nbsp+&nbsp`+ a[1][3] + `&nbsp</span>
-          <table style="border-right: 1px solid #000;border-left: 1px solid #000;">
-            <tr>
-              <td style="padding:5px;">`+ a[2][1] + `<td>
-              <td style="padding:5px;">`+ a[2][2] + `<td>
-            </tr>
-            <tr>
-              <td style="padding:5px;">`+ a[3][1] + `<td>
-              <td style="padding:5px;">`+ a[3][2] + `<td>
-            </tr>
-          </table>
-        </div>
-
-        <br>
-        
-        <div style="margin-bottom:15px; text-align: center"><b>Paso 2:</b> Para determinar el signo multiplicamos cada elemento por (-1)<sup>(i+j)</sup> y calculamos las determinantes de las matrices de 2x2</div>
-        <div style="margin-bottom:15px; text-align: center">(`+ a[1][1] + ` )(-1)<sup>(1+1)</sup>x (` + a[2][2] + `*` + a[3][3] + `-` + a[2][3] + `*` + a[3][2] + `) + (` + a[1][2] + ` )(-1)<sup>(1+2)</sup>x (` + a[2][1] + `*` + a[3][3] + `-` + a[2][3] + `*` + a[3][1] + `) + (` + a[1][3] + ` )(-1)<sup>(1+1)</sup>x (` + a[2][1] + `*` + a[3][2] + `-` + a[2][2] + `*` + a[3][1] + `)</div>
-        
-        <br>
-
-        <div style="margin-bottom:15px; text-align: center"><b>Paso 3:</b>Realizamos los cálculos respectivos para hallar la solución</div>
-
-        <div style="margin-bottom:15px; text-align: center"> (`+ deta + `) - (` + detb + `) + (` + detc + `) = ` + determ + `</div>        
-        `;
-    }
-  </script>
+    </script>
 </head>
 
 <body text="white">
